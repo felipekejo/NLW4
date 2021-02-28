@@ -13,7 +13,7 @@ class SendMailController {
     const { email, survey_id } = request.body
 
     const usersRepository = getCustomRepository(UsersRepository)
-    const surveysRepostitory = getCustomRepository(SurveysRepository)
+    const surveysRepository = getCustomRepository(SurveysRepository)
     const surveysUsersRepository = getCustomRepository(SurveysUsersRepository)
 
     const user = await usersRepository.findOne({ email })
@@ -24,7 +24,7 @@ class SendMailController {
     }
 
 
-    const survey = await surveysRepostitory.findOne({ id: survey_id })
+    const survey = await surveysRepository.findOne({ id: survey_id })
 
     if (!survey) {
       throw new AppError("Survey does not exists")
